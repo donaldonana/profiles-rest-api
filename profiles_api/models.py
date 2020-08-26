@@ -12,7 +12,7 @@ class UserProfileManager(BaseUserManager):
         if not email:
             raise ValueError("User most have an email adresse")
 
-        email = self.normalize_email(email)
+        # email = self.normalize_email(email)
         user = self.model(email=email, name=name)
 
         user.set_password(password)
@@ -28,6 +28,7 @@ class UserProfileManager(BaseUserManager):
         user.is_superuser = True
         user.is_staff = True
 
+        user.save(using=self._db)
         return user
 
 
@@ -43,7 +44,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
-    REQUIRE_FIELDs = ['name']
+    REQUIRED_FIELDS = ['name']
 
     def get_full_name(self):
         """retrieve the full name of the user"""
