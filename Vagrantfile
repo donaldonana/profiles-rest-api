@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
  # boxes at https://vagrantcloud.com/search.
  config.vm.box = "ubuntu/bionic64"
  config.vm.box_version = "~> 20200304.0.0"
- config.vm.synced_folder ".", "/vagrant/vagrant", create: true, owner: "vagrant",
+ config.vm.synced_folder ".", "/vagrant", create: true, owner: "vagrant",
   group: "vagrant", mount_options: ["uid=1234", "gid=1234"]
 
  config.vm.network "forwarded_port", guest: 8000, host: 8000
